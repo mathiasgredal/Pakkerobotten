@@ -3,6 +3,33 @@ interface Package_Location {
     destination: string;
 }
 
+function randomIntFromInterval(min : number, max: number) : number { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+function GeneratePackages(n: number) : Package_Location[] {
+    let random_packages : Package_Location[] = [];
+
+
+    let locations = Object.keys(coords);
+
+    for(let i = 0; i < n; i++) {
+        let some_package: Package_Location = {current: "", destination: ""};
+
+        some_package.current = locations[randomIntFromInterval(0, locations.length-1)]
+        
+        let destination = some_package.current;
+
+        while(destination == some_package.current)
+            destination = locations[randomIntFromInterval(0, locations.length-1)];
+        
+        some_package.destination = destination;
+
+        random_packages.push(some_package);
+    }
+    return random_packages;
+}
+
 class State {
     robot_loc: string;
     packages: Package_Location[];
@@ -35,20 +62,7 @@ class State {
         
         this.robot_loc = to;
 
-        // Store the current transformation matrix
-        ctx.save();
-
-        // Use the identity matrix while clearing the canvas
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Restore the transform
-        ctx.restore();
-
-        drawRoads();
-        drawLocations();
-        drawPackages();
-
+        redraw();
 
         console.log(this.packages);
     }

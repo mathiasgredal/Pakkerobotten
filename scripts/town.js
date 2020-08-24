@@ -1,3 +1,20 @@
+function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function GeneratePackages(n) {
+    var random_packages = [];
+    var locations = Object.keys(coords);
+    for (var i = 0; i < n; i++) {
+        var some_package = { current: "", destination: "" };
+        some_package.current = locations[randomIntFromInterval(0, locations.length - 1)];
+        var destination = some_package.current;
+        while (destination == some_package.current)
+            destination = locations[randomIntFromInterval(0, locations.length - 1)];
+        some_package.destination = destination;
+        random_packages.push(some_package);
+    }
+    return random_packages;
+}
 var State = /** @class */ (function () {
     function State(robot_loc, packages) {
         this.robot_loc = robot_loc;
@@ -21,16 +38,7 @@ var State = /** @class */ (function () {
             return element.current != element.destination;
         });
         this.robot_loc = to;
-        // Store the current transformation matrix
-        ctx.save();
-        // Use the identity matrix while clearing the canvas
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        // Restore the transform
-        ctx.restore();
-        drawRoads();
-        drawLocations();
-        drawPackages();
+        redraw();
         console.log(this.packages);
     };
     return State;

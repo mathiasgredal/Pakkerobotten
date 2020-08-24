@@ -4,19 +4,8 @@ const ctx : CanvasRenderingContext2D = canvas.getContext("2d");
 
 ctx.scale(2,2);
 
-let packages : Package_Location[] = [
-    {current: "A", destination: "B"}, 
-    {current: "A", destination: "C"}, 
-    {current: "A", destination: "G"},
-    {current: "G", destination: "P"}];
+var state : State = new State("A", GeneratePackages(randomIntFromInterval(500, 1000)));
 
-
-var state : State = new State("A", packages);
-
-
-drawRoads();
-drawLocations();
-drawPackages();
-
+redraw();
 
 
