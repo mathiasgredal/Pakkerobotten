@@ -9,3 +9,12 @@ var state : State = new State("A", GeneratePackages(randomIntFromInterval(500, 1
 redraw();
 
 
+let robot_interval = setInterval(()=>{
+    runRobot();
+
+    if(state.packages.length == 0){
+        clearInterval(robot_interval);
+        console.log("Done in "+state.iterations+" moves");
+    }
+}, 100);
+

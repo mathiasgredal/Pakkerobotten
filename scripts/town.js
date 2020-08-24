@@ -17,6 +17,7 @@ function GeneratePackages(n) {
 }
 var State = /** @class */ (function () {
     function State(robot_loc, packages) {
+        this.iterations = 0;
         this.robot_loc = robot_loc;
         this.packages = packages;
     }
@@ -39,7 +40,7 @@ var State = /** @class */ (function () {
         });
         this.robot_loc = to;
         redraw();
-        console.log(this.packages);
+        this.iterations++;
     };
     return State;
 }());

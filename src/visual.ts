@@ -80,9 +80,7 @@ function drawPackages(centerX: number, centerY: number, packs: string[]) {
 }
 
 function drawAllPackages() {
-
     for (let k in coords) {
-
         var packs: string[] = [];
 
         for (let p of state.packages) {

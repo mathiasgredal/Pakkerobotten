@@ -33,6 +33,7 @@ function GeneratePackages(n: number) : Package_Location[] {
 class State {
     robot_loc: string;
     packages: Package_Location[];
+    iterations: number = 0;
 
     constructor(robot_loc: string, packages: Package_Location[]) {
         this.robot_loc = robot_loc;
@@ -64,7 +65,7 @@ class State {
 
         redraw();
 
-        console.log(this.packages);
+        this.iterations++;
     }
 }
 

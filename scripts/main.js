@@ -4,3 +4,10 @@ var ctx = canvas.getContext("2d");
 ctx.scale(2, 2);
 var state = new State("A", GeneratePackages(randomIntFromInterval(500, 1000)));
 redraw();
+var robot_interval = setInterval(function () {
+    runRobot();
+    if (state.packages.length == 0) {
+        clearInterval(robot_interval);
+        console.log("Done in " + state.iterations + " moves");
+    }
+}, 100);
