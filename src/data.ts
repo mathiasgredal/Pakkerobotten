@@ -1,5 +1,5 @@
 // Key:  {Name, x, y}
-const coords = { 
+export const coords = { 
     "A": {"Name": "Anjas hus", x:  900, y:  150},
     "B": {"Name": "Bobs hus", x: 1000, y: 400},
     "C": {"Name": "Anjas sommerhus", x: 1100, y: 100},
@@ -14,7 +14,7 @@ const coords = {
 }
 
 // Each element is an array of length 2 that defines starting point and ending point of a road
-const roads = [
+export const roads = [
     ["A","B"],
     ["A","C"],
     ["A","P"],

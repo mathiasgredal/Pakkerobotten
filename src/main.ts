@@ -1,20 +1,23 @@
-// Roads and coords objects are expected to be loaded
-const canvas : HTMLCanvasElement  = document.querySelector("#town")
-const ctx : CanvasRenderingContext2D = canvas.getContext("2d");
+import {redraw} from "./visual"
+import {Robot, randomRobot} from "./robot"
+import {GeneratePackages} from "./packages"
+import {NeuroEvolution} from "./neat"
+import { find_path } from "./utility";
 
-ctx.scale(2,2);
+let robot = new Robot("A", GeneratePackages(50), undefined);
+redraw(robot);
 
-var state : State = new State("A", GeneratePackages(randomIntFromInterval(500, 1000)));
+let neat: NeuroEvolution = new NeuroEvolution();
 
-redraw();
+console.log(find_path("A", "A"));
 
+neat.startEvaluation();
 
 let robot_interval = setInterval(()=>{
-    runRobot();
+    neat.update();
+    redraw(neat.robots[0]);
+}, 10);
 
-    if(state.packages.length == 0){
-        clearInterval(robot_interval);
-        console.log("Done in "+state.iterations+" moves");
-    }
-}, 100);
+
+
 
