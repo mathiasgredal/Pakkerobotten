@@ -15,7 +15,7 @@ neat.startEvaluation();
 
 let robot_interval = setInterval(()=>{
     neat.update();
-    redraw(neat.robots[0]);
+    //redraw(neat.robots[0]);
 }, 10);
 
 

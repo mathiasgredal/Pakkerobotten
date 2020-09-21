@@ -14,14 +14,14 @@ var Architect = neataptic.architect;
 // Network settings
 const INPUT_SIZE = 33;
 const START_HIDDEN_SIZE = 50;
-const OUTPUT_SIZE = 11;
+const OUTPUT_SIZE = 10;
 
 // GA settings
-var PACKAGES_PER_PLAYER = 2;
-var PLAYER_AMOUNT = 50;
+var PACKAGES_PER_PLAYER = 50;
+var PLAYER_AMOUNT = 100;
 var ITERATIONS = 250;
 var MUTATION_RATE = 0.3;
-var ELITISM = Math.round(0.3 * PLAYER_AMOUNT);
+var ELITISM = Math.round(0.05 * PLAYER_AMOUNT);
 
 export class NeuroEvolution {
     highestScore = -100000;
@@ -59,8 +59,8 @@ export class NeuroEvolution {
             }
 
             // If the robot has made too many moves, then we can just declare it finished and give it a bad score
-            if (robot.totalMoves > 100) {
-                robot.brain.score = -1000 - robot.packages.length;
+            if (robot.totalMoves > 250) {
+                robot.brain.score = -1000 * robot.packages.length;
                 if (robot.brain.score > this.highestScore)
                     this.highestScore = robot.brain.score;
                 continue;
@@ -109,6 +109,7 @@ export class NeuroEvolution {
 
             // Generate outputs
             let output: number[] = robot.brain.activate(input);
+            output.splice(Object.keys(coords).indexOf(robot.robotLocation), 0, 0);
 
             // Pick the location with the highest probability:
             let highestProb = Math.max.apply(Math, output);
