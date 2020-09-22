@@ -13,7 +13,7 @@ var Architect = neataptic.architect;
 
 // Network settings
 const INPUT_SIZE = 33;
-const START_HIDDEN_SIZE = 50;
+const START_HIDDEN_SIZE = 100;
 const OUTPUT_SIZE = 10;
 
 // GA settings
@@ -50,7 +50,6 @@ export class NeuroEvolution {
         let allRobotsFinished = true;
 
         for (let robot of this.robots) {
-            // If the robot has delivered all of its packages, then we can just move to the next robot
             if (robot.packages.length == 0) {
                 robot.brain.score = -robot.totalMoves;
                 if (robot.brain.score > this.highestScore)
@@ -58,7 +57,6 @@ export class NeuroEvolution {
                 continue;
             }
 
-            // If the robot has made too many moves, then we can just declare it finished and give it a bad score
             if (robot.totalMoves > 250) {
                 robot.brain.score = -1000 * robot.packages.length;
                 if (robot.brain.score > this.highestScore)
@@ -132,9 +130,6 @@ export class NeuroEvolution {
 
         if (allRobotsFinished)
             this.endEvaluation();
-
-
-
     }
 
     /** Start the evaluation of the current generation */
