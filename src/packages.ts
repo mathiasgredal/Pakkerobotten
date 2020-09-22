@@ -20,7 +20,7 @@ export function GeneratePackages(n: number) : IPackage[] {
         
         let destination = some_package.current;
 
-        while(destination == some_package.current)
+        while(destination === some_package.current)
             destination = locations[randomIntFromInterval(0, locations.length-1)];
         
         some_package.destination = destination;

@@ -6,6 +6,7 @@ export class Robot {
     totalMoves : number = 0;
     packages: IPackage[];
     brain: any;
+    moves: string[] = [];
 
     constructor(startLocation: string, startPackages: IPackage[], genome: any ) {
         this.robotLocation = startLocation;
@@ -34,6 +35,7 @@ export class Robot {
 
         this.robotLocation = to;
         this.totalMoves++;
+        this.moves.push(to);
     }
 
 
